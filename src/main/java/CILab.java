@@ -21,25 +21,18 @@ public class CILab implements CILabInterface {
         while(scanner.hasNext()) {
             word = scanner.next();
 
-            boolean allCaps = true, firstCap = true, allLower = true;
-            for (int i = 0; i < word.length(); i++) {
-                char current = word.charAt(i);
-                if (Character.isLowerCase(current)) {
-                    allCaps = false;
-                    if(i == 0)
-                    {
-                        firstCap = false;
-                    }
-                } else {
-                    if( i != 0)
-                    {
-                        firstCap = false;
-                    }
-                    allLower = false;
+            int capsCount = 0;
+            for(int i = 0; i < word.length(); i++)
+            {
+                if (Character.isUpperCase(word.charAt(i)))
+                {
+                    capsCount++;
                 }
             }
 
-            if (!(allCaps && firstCap && allLower))
+            if (capsCount != 0
+                && capsCount != word.length()
+                && (capsCount != 1 || !Character.isUpperCase(word.charAt(0))))
             {
                 return false;
             }
